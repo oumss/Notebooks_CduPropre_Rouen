@@ -19,11 +19,13 @@ def predict_duration():
     file = request.files['file']
     filename = os.path.join("/tmp", file.filename)
     file.save(filename)
-    # TODO : Calculer la prédiction ici
+    predictions = predict(filename)
+    # Après la prédiction, on supprime le fichier
+    os.remove(filename)
 
     # Pour chaque prédiction, on a :
     # (catégorie, [x, y, w, h, probabilité])
-    # TODO : Retourner au format JSON
+    return jsonify(predictions if predictions else []), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
