@@ -1,0 +1,10 @@
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5n.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5m.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5l.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5x.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5n-cls.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s-cls.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5m-cls.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5l-cls.pt
+* wget https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5x-cls.pt
