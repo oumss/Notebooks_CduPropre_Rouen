@@ -68,7 +68,7 @@ def load_model():
     model = torch.hub.load(
         'yolov5',
         'custom',
-        path='./weights/last.pt',
+        path='./data/model.pt',
         source='local'
     )
 

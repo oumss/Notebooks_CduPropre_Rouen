@@ -1,3 +1,22 @@
+from streamlit.components.v1 import html
+from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import streamlit as st
+import pydeck as pdk
+
+API_URL_PREDICT = "http://localhost:8080//predict"
+
+#py -m streamlit run dashboard.py
+
+
+# Warmup 
+requests.get(API_URL_PREDICT)
+np.random.seed(0)
+
 
 # Les données d'exemple que l'on utilise si on n'a pas de points
 samples = pd.DataFrame([
