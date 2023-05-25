@@ -87,7 +87,7 @@ try:
     else:
         data = df.loc[countries]
         data /= 1000000.0
-        tab_stats.write("### Gross Agricultural Production ($B)")
+        tab_stats.write("### Déchets produits par pays ")
         tab_stats.write(data.sort_index())
  
         data = data.T.reset_index()
