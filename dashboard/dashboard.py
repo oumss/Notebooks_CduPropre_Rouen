@@ -35,9 +35,9 @@ font="arial.ttf"
 
 # Les données d'exemple que l'on utilise si on n'a pas de points
 samples = pd.DataFrame([
-    np.asarray([48.822507, 2.268754]) + np.random.randn(2) * 0.004 for _ in range(50)
+    np.asarray([49.440788, 1.069758]) + np.random.randn(2) * 0.024 for _ in range(100)
 ], columns=['lat', 'lon'])
-data = np.array([[48.822507, 2.268754],[48.8225507, 2.261754],[48.822547, 2.268764],[48.822247, 2.268564]])
+data = np.array([[49.440788, 1.069758],[49.440787, 1.069754],[49.440782, 1.069763],[49.440769, 1.069758]])
 
 # Les points où se trouvent les déchets
 if "points" not in st.session_state:
@@ -92,14 +92,14 @@ try:
  
         data = data.T.reset_index()
         data = pd.melt(data, id_vars=["index"]).rename(
-            columns={"index": "year", "value": "Gross Agricultural Product ($B)"}
+            columns={"index": "year", "value": "Déchets produits par pays"}
         )
         chart = (
             alt.Chart(data)
             .mark_area(opacity=0.3)
             .encode(
                 x="year:T",
-                y=alt.Y("Gross Agricultural Product ($B):Q", stack=None),
+                y=alt.Y("Déchets produits par pays:Q", stack=None),
                 color="Region:N",
             )
         )
@@ -131,25 +131,25 @@ tab_stats.button("Re-run")
 
 
 ### Map ###
-heatmap = tab_map.checkbox("Afficher la heatmap ?", value=True)
-use_samples = tab_map.checkbox("Utiliser les données d'exemple ?", value=False)
+heatmap = tab_map.checkbox("Afficher la heatmap ?", value=False)
+#use_samples = tab_map.checkbox("Utiliser les données d'exemple ?", value=True)
 tab_map.pydeck_chart(pdk.Deck(
     map_style=None,
     initial_view_state=pdk.ViewState(
-        latitude=48.822507,
-        longitude=2.268754,
+        latitude=49.440788, 
+        longitude=1.069758,
         zoom=14
     ),
 	layers=[
 	    pdk.Layer(
 	        'HeatmapLayer',
-	        data=samples if use_samples else points,
+	        data=samples if True else points, #use_samples
 	        get_position='[lon, lat]'
 	    )
 	    if heatmap else
 	    pdk.Layer(
 	        'ColumnLayer',
-	        data=samples if use_samples else points,
+	        data=samples if True else points, #use_samples
 	        get_position='[lon, lat]',
             radius=20,
             elevationScale=0,
@@ -210,9 +210,9 @@ if file_upload is not None:
         tab_predict.write("- **{}** (probabilité {:2.1f}%)".format(p[0], p[1][-1] * 100))
     tab_predict.write("#### Quelles sont les coordonnées de la photo ?")
     cols = tab_predict.columns(2)
-    latitude = cols[0].number_input("Latitude", value=48.822507, min_value=0.0, max_value=90.0)
-    longitude = cols[1].number_input("Longitude", value=2.268754, min_value=-180.0, max_value=180.0)
-    validate_coords = tab_predict.button("Valider les coordonnées")
+    latitude = cols[0].number_input("Latitude", value=49.440788, min_value=0.0, max_value=90.0)
+    longitude = cols[1].number_input("Longitude", value=1.069758, min_value=-180.0, max_value=180.0)
+    validate_coords = tab_predict.button("Valider les coordonnées") 
 
     if validate_coords:
         tab_predict.success("Image ajoutée dans la Map !")
